@@ -6,7 +6,9 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +23,13 @@ public class EmployeeData extends javax.swing.JFrame {
     public EmployeeData() throws CsvValidationException {
         initComponents();
         ReadEmployee(empNo);
+        showDate();
+    }
+ 
+    private void showDate() {
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        jLabel3.setText(s.format(d));
     }
 
     private boolean ReadEmployee(String empNo) throws CsvValidationException {
@@ -29,10 +38,7 @@ public class EmployeeData extends javax.swing.JFrame {
             String filename = "Employee Data.csv";
             // Read the CSV header
             try (CSVReader reader = new CSVReader(new FileReader(filename))) {
-
-                // Skip the 1st row as the hearders have been set
-                reader.skip(1);
-
+                String[] header = reader.readNext();
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 jTable1.setAutoCreateRowSorter(true);
@@ -67,6 +73,8 @@ public class EmployeeData extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
         employeeNo = new javax.swing.JTextField();
@@ -80,21 +88,38 @@ public class EmployeeData extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Employee Data");
         setMinimumSize(new java.awt.Dimension(700, 540));
         setPreferredSize(new java.awt.Dimension(1500, 540));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 100));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Admin");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,6 +140,7 @@ public class EmployeeData extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Search: (Emp #)");
 
         addButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -141,7 +167,8 @@ public class EmployeeData extends javax.swing.JFrame {
             }
         });
 
-        refreshButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\OneDrive\\Documents\\Sync Discussion Notes\\HUM080 - PH Pop Culture\\refresh.jpg")); // NOI18N
+        refreshButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshButtonActionPerformed(evt);
@@ -155,26 +182,30 @@ public class EmployeeData extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(employeeNo)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(searchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(11, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backButton)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(updateButton)
-                    .addComponent(deleteButton)
-                    .addComponent(addButton)
-                    .addComponent(searchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                            .addComponent(employeeNo)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(updateButton)
+                                            .addComponent(deleteButton)
+                                            .addComponent(addButton)))
+                                    .addComponent(backButton)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addButton, deleteButton, searchButton, updateButton});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addButton, deleteButton, refreshButton, searchButton, updateButton});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,19 +215,21 @@ public class EmployeeData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(employeeNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchButton)
-                    .addComponent(refreshButton))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(refreshButton)
+                    .addComponent(searchButton))
+                .addGap(19, 19, 19)
                 .addComponent(addButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(updateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {refreshButton, searchButton});
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -228,7 +261,7 @@ public class EmployeeData extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,10 +288,10 @@ public class EmployeeData extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        empNo = employeeNo.getText();
-        if (!empNo.isEmpty()) {
+        this.empNo = employeeNo.getText();
+        if (!this.empNo.isEmpty()) {
             try {
-                if (!ReadEmployee(empNo)) {
+                if (!ReadEmployee(this.empNo)) {
                     JOptionPane.showMessageDialog(this, "Employee not found!", "Search Result", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (CsvValidationException ex) {
@@ -293,12 +326,12 @@ public class EmployeeData extends javax.swing.JFrame {
             // Read the CSV file
             String filename = "Employee Data.csv";
             List<String[]> csvData = new ArrayList<>();
-
+            
             try (CSVReader reader = new CSVReader(new FileReader(filename))) {
-                String[] nextLine;
-                while ((nextLine = reader.readNext()) != null) {
+                //String[] header = reader.readNext();
+                while ((this.nextLine = reader.readNext()) != null) {
                     // Check if the current row's employee number matches the one to be deleted
-                    if (nextLine.length > 0 && nextLine[0].equals(empDelete)) {
+                    if (this.nextLine.length > 0 && this.nextLine[0].equals(empDelete)) {
                         empFound = true; //Set flag to true if the employee number is found
                         // Skip this row if it matches the employee number to be deleted
                         continue;
@@ -339,11 +372,11 @@ public class EmployeeData extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-// Get the employee number from the text field
-        String empNo = employeeNo.getText().trim();
+        // Get the employee number from the text field
+        this.empNo = employeeNo.getText().trim();
 
         // Check if the employee number is empty
-        if (empNo.isEmpty()) {
+        if (this.empNo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter an employee number.", "Update Employee", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -373,11 +406,11 @@ public class EmployeeData extends javax.swing.JFrame {
         // Read the CSV file and search for the employee data
         String filename = "Employee Data.csv";
         try (CSVReader reader = new CSVReader(new FileReader(filename))) {
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                if (nextLine.length > 0 && nextLine[0].equals(empNo)) {
+            String[] header = reader.readNext();
+            while ((this.nextLine = reader.readNext()) != null) {
+                if (this.nextLine.length > 0 && this.nextLine[0].equals(empNo)) {
                     // Return the employee data if found
-                    return nextLine;
+                    return this.nextLine;
                 }
             }
         }
@@ -434,6 +467,8 @@ public class EmployeeData extends javax.swing.JFrame {
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField employeeNo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

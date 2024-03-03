@@ -254,13 +254,22 @@ public class AddEmployee extends javax.swing.JFrame {
         String empPINValue = empPIN.getText();
         String empStatValue = empStat.getText();
         String empPosValue = empPos.getText();
-        String empSupValue = empSup.getText();
-        String basic = "123"; 
+        String empSupValue = empSup.getText(); 
         String rice = empStatValue.equals("Regular") ? "1500" : "0";
-        String phone = "22";
-        String cloth = "33";
-        String gross = "44";
+        String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
+                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
+                       (empStatValue.equals("Regular")) ? "500" : "0";
+        String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
+                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
+                       (empStatValue.equals("Regular")) ? "500" : "0";
         String empHrRValue = empHrR.getText();
+        if (!empHrRValue.matches("\\d*\\.?\\d+")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return; // Stop further execution
+        }
+        Double HourRate = Double.valueOf(empHrRValue);
+        Double basic = HourRate * 168;
+        Double gross = basic/2;
         
         
 
@@ -272,7 +281,7 @@ public class AddEmployee extends javax.swing.JFrame {
         }
 
         // Prepare the data as a CSV format
-        String[] rowData = {empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, basic, rice, phone, cloth, gross, empHrRValue};
+        String[] rowData = {empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, String.valueOf(basic), rice, phone, cloth, String.valueOf(gross), empHrRValue};
         String filename = "Employee Data.csv";
 
         try (CSVWriter writer = new CSVWriter(new FileWriter(filename, true))) {

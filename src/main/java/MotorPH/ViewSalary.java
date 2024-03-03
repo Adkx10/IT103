@@ -17,7 +17,7 @@ public class ViewSalary extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public void showDate() {
+    private void showDate() {
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         Date d = new Date();
         date.setText(s.format(d));
@@ -48,6 +48,7 @@ public class ViewSalary extends javax.swing.JFrame {
         showData = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("View Salary");
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(700, 540));
 
@@ -206,7 +207,6 @@ public class ViewSalary extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
         double baseSalary;
         double allowances;
         try {
@@ -308,7 +308,7 @@ public class ViewSalary extends javax.swing.JFrame {
             System.setOut(old);
 
             // Catch an invalid input of employee number
-            if (data.EmployeeFN() == null) {
+            if (data.EmployeeNo() == null) {
                 infoText.append("\n\t*** Employee Not Found! ***").append("\n");
             } else {
                 // Construct the salary information

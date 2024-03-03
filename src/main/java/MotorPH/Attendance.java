@@ -97,24 +97,25 @@ public class Attendance {
     
     public void ComputeHourWorked()throws FileNotFoundException, IOException, CsvValidationException, ParseException{
         String filename = "Attendance.csv";
-        CSVReader reader = new CSVReader(new FileReader(filename));
-        String[] headers = reader.readNext();
-        while((hoursWorked = reader.readNext()) != null){
-            if(hoursWorked[0].equals(_employeeNo) && hoursWorked[3].equals(_month)){
-                _month = hoursWorked[3];
-                _date = hoursWorked[4];
-                _timeIn = hoursWorked[5];
-                _timeOut = hoursWorked[6];
-
-                //System.out.println(); //THESE SOUTS ARE JUST FOR TESTING IF THE DATES AND TIMEIN&OUT ARE CAPTURED CORRECTLY.
-                //System.out.println("Date: " + _date);
-                //System.out.println("Time In: " + _timeIn);
-                //System.out.println("Time Out: " + _timeOut);
-                HoursWorked();
-                totalHours += gracePer;
-                //System.out.println("Test " + FinalHW());    
-            } 
+        try (CSVReader reader = new CSVReader(new FileReader(filename))) {
+            String[] headers = reader.readNext();
+            while ((hoursWorked = reader.readNext()) != null) {
+                if(hoursWorked[0].equals(_employeeNo) && hoursWorked[3].equals(_month)){
+                    _month = hoursWorked[3];
+                    _date = hoursWorked[4];
+                    _timeIn = hoursWorked[5];
+                    _timeOut = hoursWorked[6];
+                    
+                    //System.out.println(); //THESE SOUTS ARE JUST FOR TESTING IF THE DATES AND TIMEIN&OUT ARE CAPTURED CORRECTLY.
+                    //System.out.println("Date: " + _date);
+                    //System.out.println("Time In: " + _timeIn);
+                    //System.out.println("Time Out: " + _timeOut);
+                    HoursWorked();
+                    totalHours += gracePer;
+                    //System.out.println("Test " + FinalHW());
+                } 
+            }
+            //System.out.println("\nTotal Hours Worked: " + FinalHW()); //ANOTHER TESTING SOUT TO SEE THE TOTAL HOURS WORKED.
         }
-        //System.out.println("\nTotal Hours Worked: " + FinalHW()); //ANOTHER TESTING SOUT TO SEE THE TOTAL HOURS WORKED.
     }
 }

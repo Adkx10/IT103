@@ -280,9 +280,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
         String empPosValue = empPos.getText();
         String empSupValue = empSup.getText();
         String rice = empStatValue.equals("Regular") ? "1500" : "0";
-        String phone = "22";
-        String cloth = "33";
-        String gross = "44";
+        String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
+                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
+                       (empStatValue.equals("Regular")) ? "500" : "0";
+        String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
+                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
+                       (empStatValue.equals("Regular")) ? "500" : "0";
         String empHrRValue = empHrR.getText();
         if (!empHrRValue.matches("\\d*\\.?\\d+")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
@@ -290,7 +293,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         }
         Double HourRate = Double.valueOf(empHrRValue);
         Double basic = HourRate * 168;
-
+        Double gross = basic/2;
 
         try {
             updateEmployeeData(empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, basic, rice, phone, cloth, gross, empHrRValue);
@@ -304,7 +307,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_updEmpDataActionPerformed
 
-    private void updateEmployeeData(String empNoValue, String empLNValue, String empFNValue, String empDOBValue, String empAddValue, String empPNValue, String empSSSNValue, String empPHNValue, String empTINValue, String empPINValue, String empStatValue, String empPosValue, String empSupValue, Double basic, String rice, String phone, String cloth, String gross, String empHrRValue) throws IOException, CsvException {
+    private void updateEmployeeData(String empNoValue, String empLNValue, String empFNValue, String empDOBValue, String empAddValue, String empPNValue, String empSSSNValue, String empPHNValue, String empTINValue, String empPINValue, String empStatValue, String empPosValue, String empSupValue, Double basic, String rice, String phone, String cloth, Double gross, String empHrRValue) throws IOException, CsvException {
         String filename = "Employee Data.csv";
         File file = new File(filename);
         File tempFile = new File("temp.csv");
@@ -316,7 +319,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 String empNoFromFile = parts[0].trim();
                 if (empNoFromFile.equals(empNoValue)) {
                     // Update the line with new values
-                    parts = new String[]{empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, String.valueOf(basic), rice, phone, cloth, gross, empHrRValue};
+                    parts = new String[]{empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, String.valueOf(basic), rice, phone, cloth, String.valueOf(gross), empHrRValue};
                     csvData.set(i, parts);
                 }
             }

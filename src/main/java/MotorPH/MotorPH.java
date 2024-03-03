@@ -10,7 +10,7 @@ public class MotorPH {
     
     public static void main(String[] args) /*(throws FileNotFoundException, ParseException*/ {
         
-        LogInPage login = new LogInPage();
+        new LogInPage();
         
         
 

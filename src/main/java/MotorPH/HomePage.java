@@ -116,6 +116,11 @@ public class HomePage extends javax.swing.JFrame {
         leaveRequest.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         leaveRequest.setText("Leave Requests");
         leaveRequest.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        leaveRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaveRequestActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,14 +166,13 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EmployeeData empData = null;
         try {
-            empData = new EmployeeData();
+            EmployeeData empData = new EmployeeData();
+            empData.setVisible(true);
+            this.dispose();
         } catch (CsvValidationException ex) {
             Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        empData.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -181,6 +185,12 @@ public class HomePage extends javax.swing.JFrame {
         LogInPage login = new LogInPage();
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void leaveRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveRequestActionPerformed
+        ViewRequest viewReq = new ViewRequest();
+        viewReq.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_leaveRequestActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,0 +1,8 @@
+"Employee #","Last Name","First Name","Request Reason","Type","Date","status","Remarks"
+"10001","Doe","John","Birthday","VL","3/16/2024","Approved",""
+"admin","admin","admin","admin","admin","admin","",""
+"admin","admin","admin","admin","admin","123","Rejected","Power Trip"
+"admin","admin","admin","admin","admin","admin","",""
+"admin","admin","admin","admin","admin","456","Rejected","No Credit"
+"admin","admin","admin","admin","admin","admin","",""
+"admin","admin","admin","admin","admin","admin","",""

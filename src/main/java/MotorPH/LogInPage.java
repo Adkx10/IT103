@@ -1,11 +1,19 @@
 
 package MotorPH;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,6 +26,23 @@ public class LogInPage extends JFrame implements ActionListener {
     private static JTextField userText;
     private static JPasswordField pwText;
     private static JButton button;
+    private String empNo;
+    private String passKey;
+    
+    public void ReadCredentials(String search)throws FileNotFoundException, IOException, CsvValidationException {
+        String filename = "Credentials.csv";
+        try (CSVReader reader = new CSVReader(new FileReader(filename))) {
+            String[] headers = reader.readNext();
+            String[] employeeData;
+            while((employeeData = reader.readNext()) != null){
+                if(employeeData[0].equals(search)){
+                    empNo = employeeData[0];
+                    passKey = employeeData[2];
+                    break;
+                }
+            }
+        } 
+    }
     
     
     public LogInPage(){
@@ -65,18 +90,24 @@ public class LogInPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String user = userText.getText();
-        String password = pwText.getText();
-        
-        if(user.equals("admin") && password.equals("MyfirstGUI")){
-            success.setText("Login Successful!");
-            success.setBounds(125, 110,300,25);
-            HomePage home = new HomePage();
-            home.setVisible(true);
-            frame.dispose();
-        } else {
-            success.setText("Incorrect Username/Password!");
-            success.setBounds(92, 110,300,25);
+        try {
+            String user = userText.getText();
+            String password = pwText.getText();
+            ReadCredentials(user);
+            ReadCredentials(password);
+            if(user.equals(empNo) && password.equals(passKey)){
+                //success.setText("Login Successful!"); //For testing only
+                //success.setBounds(125, 120,300,25);
+                HomePage home = new HomePage();
+                home.setVisible(true);
+                frame.dispose();
+            } else {
+                success.setText("Incorrect Login Credentials");
+                success.setBounds(92, 120,300,25);
+            }
+            
+        } catch (IOException | CsvValidationException ex) {
+            Logger.getLogger(LogInPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
