@@ -46,7 +46,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        empNo = new javax.swing.JTextField();
         empLN = new javax.swing.JTextField();
         empFN = new javax.swing.JTextField();
         empDOB = new javax.swing.JTextField();
@@ -75,36 +74,50 @@ public class UpdateEmployee extends javax.swing.JFrame {
         updEmpData = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         empHrR = new javax.swing.JTextField();
+        empNo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Updating Employee Data");
         setMinimumSize(new java.awt.Dimension(500, 650));
         setResizable(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Employee Number :");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Last Name :");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("First Name :");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Date of Birth :");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Address :");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Phone Number :");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("SSS Number :");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("PhilHealth Number :");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("TIN :");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Pag-Ibig Number :");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setText("Status :");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Position :");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("Immediate Supervisor :");
 
         updEmpData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -117,14 +130,18 @@ public class UpdateEmployee extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Hourly Rate :");
+
+        empNo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        empNo.setText("empNo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -146,10 +163,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
                         .addComponent(empPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(empNo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -173,9 +186,13 @@ public class UpdateEmployee extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(empFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(empLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(empLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(empNo))))
                         .addGap(1, 1, 1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -186,22 +203,22 @@ public class UpdateEmployee extends javax.swing.JFrame {
                             .addComponent(empHrR, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(empSup))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(updEmpData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empAdd, empDOB, empFN, empHrR, empLN, empNo, empPHN, empPIN, empPN, empPos, empSSSN, empStat, empSup, empTIN});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empAdd, empDOB, empFN, empHrR, empLN, empPHN, empPIN, empPN, empPos, empSSSN, empStat, empSup, empTIN});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(empNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(empNo))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -230,7 +247,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(empPHN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empTIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,9 +270,9 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empHrR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(updEmpData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {empHrR, empSup});
@@ -280,21 +297,26 @@ public class UpdateEmployee extends javax.swing.JFrame {
         String empPosValue = empPos.getText();
         String empSupValue = empSup.getText();
         String rice = empStatValue.equals("Regular") ? "1500" : "0";
-        String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
-                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
-                       (empStatValue.equals("Regular")) ? "500" : "0";
-        String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
-                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
-                       (empStatValue.equals("Regular")) ? "500" : "0";
+        String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
+                : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
+                : (empStatValue.equals("Regular")) ? "500" : "0";
+        String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
+                : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
+                : (empStatValue.equals("Regular")) ? "500" : "0";
         String empHrRValue = empHrR.getText();
+        if (empNoValue.isEmpty() || empLNValue.isEmpty() || empFNValue.isEmpty() || empDOBValue.isEmpty() || empAddValue.isEmpty()
+                || empPNValue.isEmpty() || empSSSNValue.isEmpty() || empPHNValue.isEmpty() || empTINValue.isEmpty() || empPINValue.isEmpty()
+                || empStatValue.isEmpty() || empPosValue.isEmpty() || empSupValue.isEmpty() || empHrRValue.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (!empHrRValue.matches("\\d*\\.?\\d+")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return; // Stop further execution
         }
         Double HourRate = Double.valueOf(empHrRValue);
         Double basic = HourRate * 168;
-        Double gross = basic/2;
-
+        Double gross = basic / 2;
         try {
             updateEmployeeData(empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, basic, rice, phone, cloth, gross, empHrRValue);
             JOptionPane.showMessageDialog(this, "Changes saved successfully.", "Update Employee", JOptionPane.INFORMATION_MESSAGE);
@@ -375,7 +397,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField empFN;
     private javax.swing.JTextField empHrR;
     private javax.swing.JTextField empLN;
-    private javax.swing.JTextField empNo;
+    private javax.swing.JLabel empNo;
     private javax.swing.JTextField empPHN;
     private javax.swing.JTextField empPIN;
     private javax.swing.JTextField empPN;

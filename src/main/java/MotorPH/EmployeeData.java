@@ -32,7 +32,7 @@ public class EmployeeData extends javax.swing.JFrame {
         jLabel3.setText(s.format(d));
     }
 
-    private boolean ReadEmployee(String empNo) throws CsvValidationException {
+    public boolean ReadEmployee(String empNo) throws CsvValidationException {
         boolean empFound = false;
         try {
             String filename = "Employee Data.csv";
@@ -402,7 +402,7 @@ public class EmployeeData extends javax.swing.JFrame {
         }
     }
 
-    private String[] searchEmployee(String empNo) throws IOException, CsvValidationException {
+    public String[] searchEmployee(String empNo) throws IOException, CsvValidationException {
         // Read the CSV file and search for the employee data
         String filename = "Employee Data.csv";
         try (CSVReader reader = new CSVReader(new FileReader(filename))) {

@@ -1,19 +1,19 @@
 package MotorPH;
 
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class AddEmployee extends javax.swing.JFrame {
-
 
     public AddEmployee() {
         initComponents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,33 +56,45 @@ public class AddEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adding Employee Data");
         setMinimumSize(new java.awt.Dimension(500, 650));
-        setPreferredSize(new java.awt.Dimension(351, 561));
         setResizable(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Employee Number :");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Last Name :");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("First Name :");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Date of Birth :");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Address :");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Phone Number :");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("SSS Number :");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("PhilHealth Number :");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("TIN :");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Pag-Ibig Number :");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setText("Status :");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Position :");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("Immediate Supervisor :");
 
         addEmpData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -95,6 +107,7 @@ public class AddEmployee extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Hourly Rate :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,9 +244,9 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empHrR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(addEmpData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -241,57 +254,66 @@ public class AddEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addEmpDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpDataActionPerformed
+        try {
+            EmployeeData data = new EmployeeData();
+            String empNoValue = empNo.getText();
+            String empLNValue = empLN.getText();
+            String empFNValue = empFN.getText();
+            String empDOBValue = empDOB.getText();
+            String empAddValue = empAdd.getText();
+            String empPNValue = empPN.getText();
+            String empSSSNValue = empSSSN.getText();
+            String empPHNValue = empPHN.getText();
+            String empTINValue = empTIN.getText();
+            String empPINValue = empPIN.getText();
+            String empStatValue = empStat.getText();
+            String empPosValue = empPos.getText();
+            String empSupValue = empSup.getText();
+            String rice = empStatValue.equals("Regular") ? "1500" : "0";
+            String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
+                    : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
+                    : (empStatValue.equals("Regular")) ? "500" : "0";
+            String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
+                    : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
+                    : (empStatValue.equals("Regular")) ? "500" : "0";
+            String empHrRValue = empHrR.getText();
 
-        String empNoValue = empNo.getText();
-        String empLNValue = empLN.getText();
-        String empFNValue = empFN.getText();
-        String empDOBValue = empDOB.getText();
-        String empAddValue = empAdd.getText();
-        String empPNValue = empPN.getText();
-        String empSSSNValue = empSSSN.getText();
-        String empPHNValue = empPHN.getText();
-        String empTINValue = empTIN.getText();
-        String empPINValue = empPIN.getText();
-        String empStatValue = empStat.getText();
-        String empPosValue = empPos.getText();
-        String empSupValue = empSup.getText(); 
-        String rice = empStatValue.equals("Regular") ? "1500" : "0";
-        String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
-                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
-                       (empStatValue.equals("Regular")) ? "500" : "0";
-        String cloth = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000" : 
-                       (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800" :
-                       (empStatValue.equals("Regular")) ? "500" : "0";
-        String empHrRValue = empHrR.getText();
-        if (!empHrRValue.matches("\\d*\\.?\\d+")) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return; // Stop further execution
-        }
-        Double HourRate = Double.valueOf(empHrRValue);
-        Double basic = HourRate * 168;
-        Double gross = basic/2;
-        
-        
+            if (empNoValue.isEmpty() || empLNValue.isEmpty() || empFNValue.isEmpty() || empDOBValue.isEmpty() || empAddValue.isEmpty()
+                    || empPNValue.isEmpty() || empSSSNValue.isEmpty() || empPHNValue.isEmpty() || empTINValue.isEmpty() || empPINValue.isEmpty()
+                    || empStatValue.isEmpty() || empPosValue.isEmpty() || empSupValue.isEmpty() || empHrRValue.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        if (empNoValue.isEmpty() || empLNValue.isEmpty() || empFNValue.isEmpty() || empDOBValue.isEmpty() || empAddValue.isEmpty()
-                || empPNValue.isEmpty() || empSSSNValue.isEmpty() || empPHNValue.isEmpty() || empTINValue.isEmpty() || empPINValue.isEmpty()
-                || empStatValue.isEmpty() || empPosValue.isEmpty() || empSupValue.isEmpty() || empHrRValue.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (data.ReadEmployee(empNo.getText()) == true) {
+                JOptionPane.showMessageDialog(this, "The employee # already exist", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        // Prepare the data as a CSV format
-        String[] rowData = {empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, String.valueOf(basic), rice, phone, cloth, String.valueOf(gross), empHrRValue};
-        String filename = "Employee Data.csv";
+            if (!empHrRValue.matches("\\d*\\.?\\d+")) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return; // Stop further execution
+            }
 
-        try (CSVWriter writer = new CSVWriter(new FileWriter(filename, true))) {
-            writer.writeNext(rowData);
-            JOptionPane.showMessageDialog(this, "Employee data added successfully.", "Add Employee Data", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException ex) {
+            Double HourRate = Double.valueOf(empHrRValue);
+            Double basic = HourRate * 168;
+            Double gross = basic / 2;
+
+            // Prepare the data as a CSV format
+            String[] rowData = {empNoValue, empLNValue, empFNValue, empDOBValue, empAddValue, empPNValue, empSSSNValue, empPHNValue, empTINValue, empPINValue, empStatValue, empPosValue, empSupValue, String.valueOf(basic), rice, phone, cloth, String.valueOf(gross), empHrRValue};
+            String filename = "Employee Data.csv";
+
+            try (CSVWriter writer = new CSVWriter(new FileWriter(filename, true))) {
+                writer.writeNext(rowData);
+                JOptionPane.showMessageDialog(this, "Employee data added successfully.", "Add Employee Data", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                Logger.getLogger(AddEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error adding employee data: " + ex.getMessage(), "Add Employee Data", JOptionPane.ERROR_MESSAGE);
+            }
+            this.dispose();
+        } catch (CsvValidationException ex) {
             Logger.getLogger(AddEmployee.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error adding employee data: " + ex.getMessage(), "Add Employee Data", JOptionPane.ERROR_MESSAGE);
         }
-        this.dispose();
     }//GEN-LAST:event_addEmpDataActionPerformed
 
     /**

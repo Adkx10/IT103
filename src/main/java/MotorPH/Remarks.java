@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class Remarks extends javax.swing.JFrame {
 
     private String[] colValue;
@@ -177,6 +176,7 @@ public class Remarks extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                new Remarks(null, null, null).setVisible(true);
             }
         });
     }

@@ -248,7 +248,7 @@ public class ViewSalary extends javax.swing.JFrame {
 
             DecimalFormat df = new DecimalFormat("#,##0.00");
 
-            if (data.EmployeeFN() == null) {
+            if (data.EmployeeNo() == empNo) {
                 salaryInfoText.append("\n\t*** Employee Not Found! ***").append("\n");
             } else if (attend.FinalHW() != 0) {
 
@@ -308,7 +308,7 @@ public class ViewSalary extends javax.swing.JFrame {
             System.setOut(old);
 
             // Catch an invalid input of employee number
-            if (data.EmployeeNo() == null) {
+            if (data.EmployeeNo() == empNo) {
                 infoText.append("\n\t*** Employee Not Found! ***").append("\n");
             } else {
                 // Construct the salary information
