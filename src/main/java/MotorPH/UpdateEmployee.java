@@ -296,7 +296,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         String empStatValue = empStat.getText();
         String empPosValue = empPos.getText();
         String empSupValue = empSup.getText();
-        String rice = empStatValue.equals("Regular") ? "1500" : "0";
+        String rice = empStatValue.equals("Regular") ? "1500" : "0"; // Autofill the allowance depending of the status
         String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
                 : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
                 : (empStatValue.equals("Regular")) ? "500" : "0";
@@ -304,16 +304,24 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
                 : (empStatValue.equals("Regular")) ? "500" : "0";
         String empHrRValue = empHrR.getText();
-        if (empNoValue.isEmpty() || empLNValue.isEmpty() || empFNValue.isEmpty() || empDOBValue.isEmpty() || empAddValue.isEmpty()
+        if (empLNValue.isEmpty() || empFNValue.isEmpty() || empDOBValue.isEmpty() || empAddValue.isEmpty()
                 || empPNValue.isEmpty() || empSSSNValue.isEmpty() || empPHNValue.isEmpty() || empTINValue.isEmpty() || empPINValue.isEmpty()
                 || empStatValue.isEmpty() || empPosValue.isEmpty() || empSupValue.isEmpty() || empHrRValue.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        if (!empDOBValue.matches("\\d+(?:[-/]\\d+)*") || !empPNValue.matches("\\d+(?:-?\\d+)*") || !empSSSNValue.matches("\\d+(?:-?\\d+)*") || !empPHNValue.matches("\\d+(?:-?\\d+)*") || !empTINValue.matches("\\d+(?:-?\\d+)*") || !empPINValue.matches("\\d+(?:-?\\d+)*")) {
+            JOptionPane.showMessageDialog(this, "Please enter a numeric value for Employee #, DOB, and Govt ID#.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (!empHrRValue.matches("\\d*\\.?\\d+")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return; // Stop further execution
         }
+        
+        // Computation to still get the correct salary numbers after updating any employee information
         Double HourRate = Double.valueOf(empHrRValue);
         Double basic = HourRate * 168;
         Double gross = basic / 2;

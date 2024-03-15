@@ -244,9 +244,9 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empHrR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(addEmpData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,7 +269,7 @@ public class AddEmployee extends javax.swing.JFrame {
             String empStatValue = empStat.getText();
             String empPosValue = empPos.getText();
             String empSupValue = empSup.getText();
-            String rice = empStatValue.equals("Regular") ? "1500" : "0";
+            String rice = empStatValue.equals("Regular") ? "1500" : "0"; // Autofill the allowance depending of the status
             String phone = (empStatValue.equals("Regular") && (empPosValue.equals("HR Manager") || empPosValue.equals("Payroll Manager") || empPosValue.equals("Account Manager"))) ? "1000"
                     : (empStatValue.equals("Regular") && (empPosValue.equals("HR Team Leader") || empPosValue.equals("Payroll Team Leader") || empPosValue.equals("Account Team Leader"))) ? "800"
                     : (empStatValue.equals("Regular")) ? "500" : "0";
@@ -282,19 +282,24 @@ public class AddEmployee extends javax.swing.JFrame {
                     || empPNValue.isEmpty() || empSSSNValue.isEmpty() || empPHNValue.isEmpty() || empTINValue.isEmpty() || empPINValue.isEmpty()
                     || empStatValue.isEmpty() || empPosValue.isEmpty() || empSupValue.isEmpty() || empHrRValue.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
-                return;
+                return; // Stop further execution
             }
 
             if (data.ReadEmployee(empNo.getText()) == true) {
-                JOptionPane.showMessageDialog(this, "The employee # already exist", "Add Employee Data", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "The employee # already exist", "Add Employee Data", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (!empNoValue.matches("\\d+(?:-?\\d+)*") || !empDOBValue.matches("\\d+(?:[-/]\\d+)*") || !empPNValue.matches("\\d+(?:-?\\d+)*") || !empSSSNValue.matches("\\d+(?:-?\\d+)*") || !empPHNValue.matches("\\d+(?:-?\\d+)*") || !empTINValue.matches("\\d+(?:-?\\d+)*") || !empPINValue.matches("\\d+(?:-?\\d+)*")) {
+                JOptionPane.showMessageDialog(this, "Please enter a numeric value for Employee #, DOB, and Govt ID#.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             if (!empHrRValue.matches("\\d*\\.?\\d+")) {
                 JOptionPane.showMessageDialog(this, "Please enter a valid numeric value for Hourly Rate.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-                return; // Stop further execution
+                return; 
             }
-
+            // Computation to get the correct salary numbers based on the hours worked after adding and employee
             Double HourRate = Double.valueOf(empHrRValue);
             Double basic = HourRate * 168;
             Double gross = basic / 2;
